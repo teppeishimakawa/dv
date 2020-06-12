@@ -1,0 +1,185 @@
+
+
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+
+<title>dv</title>
+
+
+
+<style>
+body
+{
+user-select: none; /* CSS3 */
+-moz-user-select: none; /* Firefox */
+-webkit-user-select: none; /* Safari、Chromeなど */
+-ms-user-select: none; /* IE10かららしい */
+}
+
+
+#tops
+{
+position: fixed;
+left:0vw;
+}
+
+
+#base
+{
+position: relative;
+width:500px;
+z-index:1;
+}
+
+
+
+
+#kizu1
+{
+
+position: absolute;
+top: 270px;
+left:150px;
+z-index: 100;
+width:50px;
+height:50px;
+z-index:2;
+}
+
+#kizu2
+{
+position: absolute;
+top: 325px;
+left:270px;
+z-index: 100;
+width:50px;
+height:50px;
+z-index:2;
+}
+
+#thank
+{
+position: absolute;
+top: 30px;
+left:15px;
+z-index: 100;
+width:100px;
+height:50px;
+z-index:2;
+font: 18px 'Lucida Grande', Helvetica, Arial, sans-serif;
+color: red;
+user-select: none;
+}
+
+</style>
+</head>
+
+<body>
+
+
+
+
+
+<div id="tops">
+<div　id="base">
+ <img src="./woman.jpg" draggable="false"></img>
+ <img id="kizu1" src="./kizu.png" draggable="false"></img>
+ <img id="kizu2" src="./kizu.png" draggable="false"></img>
+ <div id="thank" style="display:none">thank you!!</div>
+</div>
+</div>
+
+<script>
+
+  function isMobile()
+{
+  const isAndroid = /Android/i.test(navigator.userAgent);
+  const isiOS = /iPhone|iPad|iPod/i.test(navigator.userAgent);
+  return isAndroid || isiOS;
+}
+
+const mobile = isMobile();
+
+
+
+
+var cnt1=0;
+var cnt2=0;
+var flg1=0;
+var flg2=0
+
+
+if(!mobile)
+{
+window.addEventListener("mousemove", function(e)
+{
+  console.log(e.clientX, e.clientY);
+
+  if(e.clientX > 140 && e.clientX < 200 && e.clientY > 270 && e.clientY < 330)
+  {cnt1++}
+  if(cnt1 >100)
+     {
+      document.getElementById("kizu1").style.display="none"
+      flg1=1;
+     }
+
+
+  if(e.clientX > 270 && e.clientX < 330 && e.clientY > 320 && e.clientY < 380)
+  {cnt2++}
+  if(cnt2 >100)
+     {
+      document.getElementById("kizu2").style.display="none"
+      flg2=1;
+     }
+
+if(flg1==1 && flg2 ==1)
+{
+document.getElementById("thank").style.display="block"
+}
+
+});
+}
+
+
+
+
+if(mobile)
+{
+window.addEventListener("touchmove", function(e)
+{
+  console.log(e.touches[0].clientX, e.touches[0].clientY);
+
+  if(e.touches[0].clientX > 140 && e.touches[0].clientX < 200 && e.touches[0].clientY > 270 && e.touches[0].clientY < 330)
+  {cnt1++}
+console.log(cnt1)
+  if(cnt1 >100)
+     {
+      document.getElementById("kizu1").style.display="none"
+      flg1=1;
+     }
+
+
+  if(e.touches[0].clientX > 270 && e.touches[0].clientX < 330 && e.touches[0].clientY > 320 && e.touches[0].clientY < 380)
+  {cnt2++}
+  if(cnt2 >100)
+     {
+      document.getElementById("kizu2").style.display="none"
+      flg2=1;
+     }
+
+if(flg1==1 && flg2 ==1)
+{
+document.getElementById("thank").style.display="block"
+}
+
+});
+}
+
+</script>
+
+
+</body>
+</html>
